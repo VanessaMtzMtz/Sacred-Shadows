@@ -5,22 +5,22 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638472531081042156
-    m_Hash: 936427627
+      ticks: 638473197639929887
+    m_Hash: 1838864960
   m_LockFileStatus:
     m_FilePath: V:/Usuarios/Vane/MonarcaGameJam2024/Sacred-Shadows/SacredShadows/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638472531082562374
-    m_Hash: 870807700
+      ticks: 638473197713966165
+    m_Hash: 3739326564
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: V:/Usuarios/Vane/MonarcaGameJam2024/Sacred-Shadows/SacredShadows/Packages
-m_EditorVersion: 2022.3.4f1 (35713cd46cd7)
+m_EditorVersion: 2022.3.5f1 (9674261d40ee)
 m_ResolvedPackages:
 - packageId: com.unity.cinemachine@2.9.7
   testable: 0
@@ -626,12 +626,12 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.timeline@1.7.4
+- packageId: com.unity.timeline@1.7.5
   testable: 0
   isDirectDependency: 1
-  version: 1.7.4
+  version: 1.7.5
   source: 1
-  resolvedPath: V:\Usuarios\Vane\MonarcaGameJam2024\Sacred-Shadows\SacredShadows\Library\PackageCache\com.unity.timeline@1.7.4
+  resolvedPath: V:\Usuarios\Vane\MonarcaGameJam2024\Sacred-Shadows\SacredShadows\Library\PackageCache\com.unity.timeline@1.7.5
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -640,7 +640,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: Use Unity Timeline to create cinematic content, game-play sequences,
     audio sequences, and complex particle effects.
   status: 0
@@ -733,7 +733,6 @@ m_ResolvedPackages:
     - 1.8.5
     - 1.8.6
     compatible:
-    - 1.7.4
     - 1.7.5
     - 1.7.6
     - 1.8.0
@@ -779,16 +778,16 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638143790870000000
+  datePublishedTicks: 638229649600000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.7/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
-    revision: 1f458a5d3f2bc66f0c1182feeaa9fcea4e8b1496
+    revision: fdb1ca9a2c2a131e0ff9cb257b2eae3b53337b3a
     path: 
   unityLifecycle:
-    version: 1.7.4
+    version: 1.7.5
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
