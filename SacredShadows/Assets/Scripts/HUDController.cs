@@ -46,8 +46,8 @@ public class HUDController : MonoBehaviour
         CleanPanels();
         HUDPanel.SetActive(true);
         Time.timeScale = 1.0f;
-        //SetLifes(FindObjectOfType<ThirdPersonController>().currentHealth);
-        //SetCatnip(FindObjectOfType<ThirdPersonController>().catnipCollected);
+        //SetLifes(FindObjectOfType<userController>().currentHealth);
+        //SetCatnip(FindObjectOfType<userController>().catnipCollected);
     }
 
     private void QuitGame()
