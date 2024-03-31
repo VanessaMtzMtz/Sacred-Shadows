@@ -2213,6 +2213,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &705603208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705603210}
+  - component: {fileID: 705603209}
+  m_Layer: 0
+  m_Name: userController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &705603209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705603208}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d56280f2bb2d9644bea243b88dd4d33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudController: {fileID: 1830933178}
+  backpackPanel: {fileID: 409048140}
+  estadosPanel: {fileID: 2018288186}
+  gameOverPanel: {fileID: 731352740}
+  victoryPanel: {fileID: 339788826}
+  mochila: 113
+  estados: 101
+  barraTension: {fileID: 267604262}
+  barraHambre: {fileID: 957260290}
+  barraAltura: {fileID: 1005132572}
+  barraBateria: {fileID: 1722044213}
+  tensionActual: 50
+  tensionMaxima: 100
+  hambreActual: 10
+  hambreMaxima: 100
+  alturaActual: 0
+  alturaMaxima: 100
+  bateriaActual: 100
+  bateriaMaxima: 100
+--- !u!4 &705603210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705603208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 482, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &731352740
 GameObject:
   m_ObjectHideFlags: 0
@@ -5131,12 +5194,22 @@ MonoBehaviour:
   hudController: {fileID: 1830933178}
   backpackPanel: {fileID: 409048140}
   estadosPanel: {fileID: 2018288186}
+  gameOverPanel: {fileID: 731352740}
+  victoryPanel: {fileID: 339788826}
   mochila: 113
   estados: 101
   barraTension: {fileID: 267604262}
   barraHambre: {fileID: 957260290}
   barraAltura: {fileID: 1005132572}
   barraBateria: {fileID: 1722044213}
+  tensionActual: 50
+  tensionMaxima: 100
+  hambreActual: 10
+  hambreMaxima: 100
+  alturaActual: 0
+  alturaMaxima: 100
+  bateriaActual: 100
+  bateriaMaxima: 100
 --- !u!4 &1567256956
 Transform:
   m_ObjectHideFlags: 0
@@ -5173,6 +5246,14 @@ MonoBehaviour:
   - {fileID: 1454661107}
   selector: {fileID: 602334691}
   ID: 0
+  useButton: {fileID: 1296069212}
+  statesController: {fileID: 705603209}
+  cantSandwiches: 3
+  cantBaterias: 1
+  cantAgua: 1
+  cantHojaCoca: 5
+  cantCerillos: 2
+  cantBengalas: 1
 --- !u!1 &1624273201
 GameObject:
   m_ObjectHideFlags: 0
@@ -6303,3 +6384,4 @@ SceneRoots:
   - {fileID: 1908386799}
   - {fileID: 1567256956}
   - {fileID: 1830933179}
+  - {fileID: 705603210}

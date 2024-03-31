@@ -31,23 +31,13 @@ public class HUDController : MonoBehaviour
         ShowHUD();
     }
 
-    /*public void SetLifes(int lifes)
-    {
-        lifesText.text = "x " + lifes.ToString();
-    }
-
-    public void SetCatnip(int catnip)
-    {
-        catnipText.text = "x " + catnip.ToString();
-    }*/
+   
 
     public void ShowHUD()
     {
         CleanPanels();
         HUDPanel.SetActive(true);
         Time.timeScale = 1.0f;
-        //SetLifes(FindObjectOfType<userController>().currentHealth);
-        //SetCatnip(FindObjectOfType<userController>().catnipCollected);
     }
 
     private void QuitGame()
@@ -57,7 +47,7 @@ public class HUDController : MonoBehaviour
 
     public void Menu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     void TogglePause()

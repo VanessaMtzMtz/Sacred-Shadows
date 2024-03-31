@@ -8,6 +8,8 @@ public class userController : MonoBehaviour
     public HUDController hudController;
     public GameObject backpackPanel;
     public GameObject estadosPanel;
+    public GameObject gameOverPanel;
+    public GameObject victoryPanel;
 
     public KeyCode mochila = KeyCode.Q;
     public KeyCode estados = KeyCode.E;
@@ -17,29 +19,28 @@ public class userController : MonoBehaviour
     public Image barraAltura;
     public Image barraBateria;
 
-    private float tensionActual;
-    private float tensionMaxima;
-    private float hambreActual;
-    private float hambreMaxima;
-    private float alturaActual;
-    private float alturaMaxima;
-    private float bateriaActual;
-    private float bateriaMaxima;
+    public int tensionActual = 50;
+    public int tensionMaxima = 100;
+    public int hambreActual = 10;
+    public int hambreMaxima = 100;
+    public int alturaActual = 0;
+    public int alturaMaxima = 100;
+    public int bateriaActual = 100;
+    public int bateriaMaxima = 100;
 
 
     // Start is called before the first frame update
     void Start()
     {
         hudController = FindObjectOfType<HUDController>();
-        //hudController.SetLifes(currentHealth);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        barraTension.fillAmount = tensionActual / tensionMaxima;
-        barraHambre.fillAmount = hambreActual / hambreMaxima;
+        barraHambre.fillAmount = (float)hambreActual / hambreMaxima;
+        barraTension.fillAmount = (float)tensionActual / tensionMaxima;
         barraAltura.fillAmount = alturaActual / alturaMaxima;
         barraBateria.fillAmount = bateriaActual / bateriaMaxima;
 
@@ -60,9 +61,7 @@ public class userController : MonoBehaviour
 
         if (tensionActual <= 0)
         {
-           /* anim.SetTrigger("Morir");
-            textValue = "Moriste";
-            textElement.text = textValue;*/
+            hudController.gameOverPanel.SetActive(true);
         }
     }
 }
