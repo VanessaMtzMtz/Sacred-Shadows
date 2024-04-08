@@ -18,14 +18,12 @@ public class BackPackInventory : MonoBehaviour
     public int cantCerillos = 2;
     public int cantBengalas = 1;
 
-   
     // Start is called before the first frame update
     void Start()
     {
         statesController = FindObjectOfType<userController>();
         useButton.onClick.AddListener(inventory);
     }
-
 
     public void Navegar()
     {
@@ -47,8 +45,6 @@ public class BackPackInventory : MonoBehaviour
         }
         selector.transform.position = BackPack[ID].transform.position;
     }
-
-    
 
     void inventory()
     {

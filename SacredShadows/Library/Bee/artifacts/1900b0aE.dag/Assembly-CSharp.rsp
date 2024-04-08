@@ -359,6 +359,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.5f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/BackPackInventory.cs"
 "Assets/Scripts/HUDController.cs"
+"Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/userController.cs"
 -langversion:9.0
 

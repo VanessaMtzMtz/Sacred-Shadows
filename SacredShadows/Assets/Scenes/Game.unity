@@ -2795,10 +2795,13 @@ MonoBehaviour:
   barraHambre: {fileID: 957260290}
   barraAltura: {fileID: 1005132572}
   barraBateria: {fileID: 1722044213}
+  barraSed: {fileID: 1119238082}
   tensionActual: 50
   tensionMaxima: 100
   hambreActual: 10
   hambreMaxima: 100
+  sedActual: 10
+  sedMaxima: 100
   alturaActual: 0
   alturaMaxima: 100
   bateriaActual: 100
@@ -4208,7 +4211,7 @@ GameObject:
   - component: {fileID: 1119238083}
   - component: {fileID: 1119238082}
   m_Layer: 5
-  m_Name: Hambre
+  m_Name: Sed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6238,10 +6241,13 @@ MonoBehaviour:
   barraHambre: {fileID: 957260290}
   barraAltura: {fileID: 1005132572}
   barraBateria: {fileID: 1722044213}
+  barraSed: {fileID: 1119238082}
   tensionActual: 50
   tensionMaxima: 100
   hambreActual: 10
   hambreMaxima: 100
+  sedActual: 10
+  sedMaxima: 100
   alturaActual: 0
   alturaMaxima: 100
   bateriaActual: 100
