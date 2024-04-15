@@ -2464,7 +2464,7 @@ GameObject:
   - component: {fileID: 674317346}
   - component: {fileID: 674317345}
   m_Layer: 5
-  m_Name: Text (TMP) (3)
+  m_Name: cantBengalas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3282,7 +3282,7 @@ GameObject:
   - component: {fileID: 864811103}
   - component: {fileID: 864811102}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: cantAgua
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4558,7 +4558,7 @@ GameObject:
   - component: {fileID: 1174292926}
   - component: {fileID: 1174292925}
   m_Layer: 5
-  m_Name: Text (TMP) (4)
+  m_Name: cantHojaCoca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4826,7 +4826,7 @@ GameObject:
   - component: {fileID: 1295872976}
   - component: {fileID: 1295872975}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: cantBaterias
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5103,9 +5103,9 @@ RectTransform:
   - {fileID: 961641452}
   - {fileID: 1624273202}
   - {fileID: 1166459726}
-  - {fileID: 1454661108}
   - {fileID: 413675039}
   - {fileID: 1518334358}
+  - {fileID: 1454661108}
   m_Father: {fileID: 409048141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5431,7 +5431,7 @@ GameObject:
   - component: {fileID: 1436904872}
   - component: {fileID: 1436904871}
   m_Layer: 5
-  m_Name: Text (TMP) (5)
+  m_Name: cantCerillos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5714,7 +5714,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454661107}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6287,15 +6287,21 @@ MonoBehaviour:
   - {fileID: 1518334357}
   - {fileID: 1454661107}
   selector: {fileID: 602334691}
-  ID: 0
   useButton: {fileID: 1296069212}
   statesController: {fileID: 705603209}
+  ID: 0
   cantSandwiches: 3
   cantBaterias: 1
   cantAgua: 1
   cantHojaCoca: 5
   cantCerillos: 2
   cantBengalas: 1
+  numSandwiches: {fileID: 2058967106}
+  numBaterias: {fileID: 1295872975}
+  numAgua: {fileID: 864811102}
+  numHojaCoca: {fileID: 1174292925}
+  numCerillos: {fileID: 1436904871}
+  numBengalas: {fileID: 674317345}
 --- !u!1 &1624273201
 GameObject:
   m_ObjectHideFlags: 0
@@ -7283,7 +7289,7 @@ GameObject:
   - component: {fileID: 2058967107}
   - component: {fileID: 2058967106}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: cantComida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

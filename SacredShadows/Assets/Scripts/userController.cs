@@ -63,7 +63,7 @@ public class userController : MonoBehaviour
             backpackPanel.SetActive(false);
         }
 
-        if (tensionActual <= 0)
+        if (tensionActual <= 0)//El usuario pierde
         {
             hudController.gameOverPanel.SetActive(true);
         }
