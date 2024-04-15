@@ -81,7 +81,24 @@ public class userController : MonoBehaviour
             // Asegurarse de que el valor no exceda el máximo
             hambreActual = Mathf.Min(hambreActual, hambreMaxima);
             sedActual = Mathf.Min(sedActual, sedMaxima);
+            ActualizarBarraHambre();
             ActualizarBarraSed();
+
+            // Comprobar si hambreActual es mayor o igual a 80 y aumentar tensionActual
+            if (hambreActual >= 80)
+            {
+                tensionActual += 20;
+            }
+
+            // Comprobar si sedActual es mayor o igual a 80 y aumentar tensionActual
+            if (sedActual >= 80)
+            {
+                tensionActual += 20;
+            }
+
+            // Asegurarse de que tensionActual no exceda el máximo
+            tensionActual = Mathf.Min(tensionActual, tensionMaxima);
+
             // Reiniciar el temporizador
             tiempoTranscurridoDesdeUltimaActualizacion = 0f;
         }

@@ -63,6 +63,10 @@ public class BackPackInventory : MonoBehaviour
             if (statesController.hambreActual >= 30) // Verificar si hay suficiente hambre para restar
             {
                 statesController.hambreActual -= 30;
+                if (statesController.hambreActual < 80) // Comprobar si hambreActual es menor que 80
+                {
+                    statesController.tensionActual -= 15; // Disminuir tensionActual si hambreActual es menor que 80
+                }
             }
             else
             {
@@ -89,6 +93,10 @@ public class BackPackInventory : MonoBehaviour
         {
             statesController.sedActual -= 20;
             statesController.ActualizarBarraSed(); // Llama a la función para actualizar la barra de sed
+            if (statesController.sedActual < 80) // Comprobar si sedActual es menor que 80
+            {
+                statesController.tensionActual -= 15; // Disminuir tensionActual si sedActual es menor que 80
+            }
             cantAgua--;
         }
         else if (ID == 3 && cantHojaCoca > 0) // Hoja coca
