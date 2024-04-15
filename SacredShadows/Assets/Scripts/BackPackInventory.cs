@@ -56,48 +56,54 @@ public class BackPackInventory : MonoBehaviour
         selector.transform.position = BackPack[ID].transform.position;
     }
 
-    void inventory()//El usuario selecciona del inventario y usa el objeto
+    void inventory()
     {
         if (ID == 0 && cantSandwiches > 0)//Comida
         {
-            statesController.hambreActual -= 30;
+            if (statesController.hambreActual >= 30) // Verificar si hay suficiente hambre para restar
+            {
+                statesController.hambreActual -= 30;
+            }
+            else
+            {
+                statesController.hambreActual = 0; // Establecer hambreActual a 0 si no hay suficiente hambre
+            }
+            statesController.ActualizarBarraHambre(); // Asegurarse de que la barra de hambre se actualice
+            Debug.Log(statesController.hambreActual);
             cantSandwiches--;
         }
-
-        if (ID == 1 && cantBaterias > 0)//Bateria
+        else if (ID == 1 && cantBaterias > 0) // Bateria
         {
             if (statesController.bateriaActual > 0)
             {
                 Debug.Log("Debes agotar tus baterías al 100 para poder recargarlas ");
             }
-            if (statesController.bateriaActual == 0)
+            else if (statesController.bateriaActual == 0)
             {
-                statesController.bateriaActual += 100;//Se recarga la linterna
-                statesController.tensionActual -= 50;//El miedo baja 50 pts
-                cantBaterias--;//Se quita del inventario
+                statesController.bateriaActual += 100; // Se recarga la linterna
+                statesController.tensionActual -= 50; // El miedo baja 50 pts
+                cantBaterias--; // Se quita del inventario
             }
-
         }
-        if (ID == 2 && cantAgua > 0)//Agua
+        else if (ID == 2 && cantAgua > 0)//Agua
         {
             statesController.sedActual -= 20;
+            statesController.ActualizarBarraSed(); // Llama a la función para actualizar la barra de sed
             cantAgua--;
-
         }
-        if (ID == 3 && cantHojaCoca > 0)//Hoja coca
+        else if (ID == 3 && cantHojaCoca > 0) // Hoja coca
         {
             statesController.alturaActual -= 20;
             cantHojaCoca--;
         }
-        if (ID == 4 && cantCerillos > 0)//Cerillos
+        else if (ID == 4 && cantCerillos > 0) // Cerillos
         {
             cantCerillos--;
         }
-        if (ID == 5 && cantBengalas > 0)//Bengala
+        else if (ID == 5 && cantBengalas > 0) // Bengala
         {
             cantBengalas--;
         }
-
         else
         {
             Debug.Log("No hay suficientes recursos");

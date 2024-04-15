@@ -40,13 +40,24 @@ public class userController : MonoBehaviour
     void Start()
     {
         hudController = FindObjectOfType<HUDController>();
+        ActualizarBarraSed(); // Llama a la función para actualizar la barra de sed al inicio
+    }
+
+    public void ActualizarBarraHambre()
+    {
+        barraHambre.fillAmount = (float)hambreActual / hambreMaxima;
+    }
+
+    public void ActualizarBarraSed()
+    {
+        barraSed.fillAmount = (float)sedActual / sedMaxima;
     }
 
     // Update is called once per frame
     void Update()
     {
-        barraHambre.fillAmount = (float)hambreActual / hambreMaxima;
-        barraSed.fillAmount = (float)sedActual / sedMaxima;
+        ActualizarBarraHambre();
+        ActualizarBarraSed();
         barraTension.fillAmount = (float)tensionActual / tensionMaxima;
         barraAltura.fillAmount = alturaActual / alturaMaxima;
         barraBateria.fillAmount = (float)bateriaActual / bateriaMaxima;
@@ -59,6 +70,7 @@ public class userController : MonoBehaviour
             tiempoTranscurrido = 0f; // Reiniciar el tiempo transcurrido
         }
 
+        
         // Aumentar el hambre y la sed cada minuto
         tiempoTranscurridoDesdeUltimaActualizacion += Time.deltaTime; // Sumar el tiempo transcurrido en cada fotograma
         if (tiempoTranscurridoDesdeUltimaActualizacion >= tiempoDeActualizacion)
@@ -69,7 +81,7 @@ public class userController : MonoBehaviour
             // Asegurarse de que el valor no exceda el máximo
             hambreActual = Mathf.Min(hambreActual, hambreMaxima);
             sedActual = Mathf.Min(sedActual, sedMaxima);
-
+            ActualizarBarraSed();
             // Reiniciar el temporizador
             tiempoTranscurridoDesdeUltimaActualizacion = 0f;
         }
