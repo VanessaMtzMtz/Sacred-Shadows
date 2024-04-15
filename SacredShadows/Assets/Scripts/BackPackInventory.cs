@@ -58,41 +58,42 @@ public class BackPackInventory : MonoBehaviour
 
     void inventory()//El usuario selecciona del inventario y usa el objeto
     {
-        if (ID == 0 && cantSandwiches != 0)//Comida
+        if (ID == 0 && cantSandwiches > 0)//Comida
         {
             statesController.hambreActual -= 30;
             cantSandwiches--;
         }
 
-        if (ID == 1 && cantBaterias != 0)//Bateria
+        if (ID == 1 && cantBaterias > 0)//Bateria
         {
-            if(statesController.bateriaActual > 0)
+            if (statesController.bateriaActual > 0)
             {
                 Debug.Log("Debes agotar tus baterías al 100 para poder recargarlas ");
             }
-            if(statesController.bateriaActual == 0)
+            if (statesController.bateriaActual == 0)
             {
-                statesController.bateriaActual += 100;
-                cantBaterias--;
+                statesController.bateriaActual += 100;//Se recarga la linterna
+                statesController.tensionActual -= 50;//El miedo baja 50 pts
+                cantBaterias--;//Se quita del inventario
             }
-            
+
         }
-        if (ID == 2 && cantAgua != 0)//Agua
+        if (ID == 2 && cantAgua > 0)//Agua
         {
-            statesController.hambreActual -= 20;
+            statesController.sedActual -= 20;
             cantAgua--;
 
         }
-        if (ID == 3 && cantHojaCoca != 0)//Hoja coca
+        if (ID == 3 && cantHojaCoca > 0)//Hoja coca
         {
             statesController.alturaActual -= 20;
             cantHojaCoca--;
         }
-        if (ID == 4 && cantCerillos != 0)//Cerillos
+        if (ID == 4 && cantCerillos > 0)//Cerillos
         {
             cantCerillos--;
         }
-        if (ID == 5 && cantBengalas != 0)//Bengala
+        if (ID == 5 && cantBengalas > 0)//Bengala
         {
             cantBengalas--;
         }

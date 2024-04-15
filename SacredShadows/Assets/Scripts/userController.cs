@@ -31,6 +31,10 @@ public class userController : MonoBehaviour
     public int bateriaActual = 100;
     public int bateriaMaxima = 100;
 
+    private float tiempoTranscurridoDesdeUltimaActualizacion = 0f;
+    private float tiempoDeActualizacion = 20f; // Intervalo de tiempo para aumentar el hambre y la sed (en segundos)
+    private float tiempoTranscurrido = 0f; // Tiempo transcurrido desde la última disminución de la batería
+    private float intervaloBateria = 5f; // Intervalo de tiempo para disminuir la batería (en segundos)
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +49,31 @@ public class userController : MonoBehaviour
         barraSed.fillAmount = (float)sedActual / sedMaxima;
         barraTension.fillAmount = (float)tensionActual / tensionMaxima;
         barraAltura.fillAmount = alturaActual / alturaMaxima;
-        barraBateria.fillAmount = bateriaActual / bateriaMaxima;
+        barraBateria.fillAmount = (float)bateriaActual / bateriaMaxima;
+
+        // Verificar si ha pasado medio minuto para disminuir la batería
+        tiempoTranscurrido += Time.deltaTime; // Aumentar el tiempo transcurrido en cada fotograma
+        if (tiempoTranscurrido >= intervaloBateria)
+        {
+            DisminuirBateria(); // Disminuir la batería si ha pasado el intervalo
+            tiempoTranscurrido = 0f; // Reiniciar el tiempo transcurrido
+        }
+
+        // Aumentar el hambre y la sed cada minuto
+        tiempoTranscurridoDesdeUltimaActualizacion += Time.deltaTime; // Sumar el tiempo transcurrido en cada fotograma
+        if (tiempoTranscurridoDesdeUltimaActualizacion >= tiempoDeActualizacion)
+        {
+            hambreActual += 5;
+            sedActual += 5;
+
+            // Asegurarse de que el valor no exceda el máximo
+            hambreActual = Mathf.Min(hambreActual, hambreMaxima);
+            sedActual = Mathf.Min(sedActual, sedMaxima);
+
+            // Reiniciar el temporizador
+            tiempoTranscurridoDesdeUltimaActualizacion = 0f;
+        }
+
 
         // Verificar si se ha presionado la tecla para activar/desactivar el panel Mochila
         if (Input.GetKeyDown(mochila))
@@ -63,9 +91,24 @@ public class userController : MonoBehaviour
             backpackPanel.SetActive(false);
         }
 
-        if (tensionActual <= 0)//El usuario pierde
+        if (tensionActual == 100)//El usuario pierde
         {
             hudController.gameOverPanel.SetActive(true);
         }
     }
+
+    // Función para disminuir la batería
+    void DisminuirBateria()
+    {
+        if (bateriaActual > 0) // Asegurarse de que la batería no esté vacía
+        {
+            bateriaActual--; // Disminuir la batería en un punto
+        }
+
+        if (bateriaActual == 0)//Si la bateria se agota el miedo crece
+        {
+            tensionActual += 35;
+        }
+    }
 }
+
