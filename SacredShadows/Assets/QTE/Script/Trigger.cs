@@ -8,6 +8,8 @@ public class Trigger : MonoBehaviour
     [SerializeField] UnityEvent onTriggerEnterEvent;
     [SerializeField] UnityEvent onTriggerExitEvent;
 
+    public UnityEvent onStart;
+
     private void OnTriggerEnter(Collider other)
     {
         onTriggerEnterEvent.Invoke();
