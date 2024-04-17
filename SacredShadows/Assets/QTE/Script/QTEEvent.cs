@@ -66,17 +66,5 @@ public class QTEEvent : MonoBehaviour
     public UnityEvent onEnd;
     public UnityEvent onSuccess;
     public UnityEvent onFail;
-
-    public void OnSuccess()
-    {
-        // Invoca el evento onSuccess si está asignado
-        if (onSuccess != null)
-        {
-            onSuccess.Invoke();
-        }
-        
-        // Destruye el objeto QTEEvent
-        Destroy(gameObject);
-    }
     
 }
