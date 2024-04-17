@@ -14,9 +14,9 @@ public class BackPackInventory : MonoBehaviour
     public userController statesController;
 
     public int ID;
-    public int cantSandwiches = 3;
-    public int cantBaterias = 1;
-    public int cantAgua = 1;
+    public int cantSandwiches = 0;
+    public int cantBaterias = 0;
+    public int cantAgua = 0;
     public int cantHojaCoca = 5;
     public int cantCerillos = 2;
     public int cantBengalas = 1;
@@ -72,8 +72,14 @@ public class BackPackInventory : MonoBehaviour
             }
             if(statesController.bateriaActual == 0)
             {
+<<<<<<< Updated upstream
                 statesController.bateriaActual += 100;
                 cantBaterias--;
+=======
+                statesController.bateriaActual += 100; // Se recarga la linterna
+                statesController.tensionActual -= 30; // El miedo baja 50 pts
+                cantBaterias--; // Se quita del inventario
+>>>>>>> Stashed changes
             }
             
         }
@@ -101,6 +107,10 @@ public class BackPackInventory : MonoBehaviour
         {
             Debug.Log("No hay suficientes recursos");
         }
+        // Debug después de cualquier modificación de tensionActual
+        Debug.Log("Valor de tensionActual después de modificaciones (BackPackInventory): " + statesController.tensionActual);
+
+
     }
 
     void OnTriggerEnter(Collider other)//Cada que el usuario choque con un objeto se agrega al inventario y desaparece del mapa

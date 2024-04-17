@@ -360,6 +360,7 @@
 "Assets/Scripts/BackPackInventory.cs"
 "Assets/Scripts/HUDController.cs"
 "Assets/Scripts/MainMenu.cs"
+"Assets/Scripts/SFXManager.cs"
 "Assets/Scripts/userController.cs"
 -langversion:9.0
 

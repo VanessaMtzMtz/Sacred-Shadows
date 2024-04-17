@@ -17,6 +17,8 @@ public class HUDController : MonoBehaviour
     public Button quitButton;
     public Button menuButton;
 
+    public userController statesController;
+
     public TextMeshProUGUI distanceText;
     private bool isGamePaused = false;
     private string textValue;
@@ -68,6 +70,8 @@ public class HUDController : MonoBehaviour
 
     void ShowPausePanel()
     {
+        statesController.backpackPanel.SetActive(false);
+        statesController.estadosPanel.SetActive(false);
         CleanPanels();
         pausePanel.SetActive(true);
     }
