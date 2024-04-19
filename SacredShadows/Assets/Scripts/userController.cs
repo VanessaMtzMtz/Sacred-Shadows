@@ -33,8 +33,6 @@ public class userController : MonoBehaviour
     public int bateriaActual = 100;
     public int bateriaMaxima = 100;
 
-<<<<<<< Updated upstream
-=======
     private bool isBackpackPanelActive = false;
     private bool isEstadosPanelActive = false;
 
@@ -45,24 +43,31 @@ public class userController : MonoBehaviour
     private float tiempoDeActualizacion = 20f; // Intervalo de tiempo para aumentar el hambre y la sed (en segundos)
     private float tiempoTranscurrido = 0f; // Tiempo transcurrido desde la última disminución de la batería
     private float intervaloBateria = 2f; // Intervalo de tiempo para disminuir la batería (en segundos)
->>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
     {
         hudController = FindObjectOfType<HUDController>();
+        ActualizarBarraSed(); // Llama a la función para actualizar la barra de sed al inicio
+    }
+
+    public void ActualizarBarraHambre()
+    {
+        barraHambre.fillAmount = (float)hambreActual / hambreMaxima;
+    }
+
+    public void ActualizarBarraSed()
+    {
+        barraSed.fillAmount = (float)sedActual / sedMaxima;
     }
 
     // Update is called once per frame
     void Update()
     {
-        barraHambre.fillAmount = (float)hambreActual / hambreMaxima;
-        barraSed.fillAmount = (float)sedActual / sedMaxima;
+        ActualizarBarraHambre();
+        ActualizarBarraSed();
         barraTension.fillAmount = (float)tensionActual / tensionMaxima;
         barraAltura.fillAmount = alturaActual / alturaMaxima;
-<<<<<<< Updated upstream
-        barraBateria.fillAmount = bateriaActual / bateriaMaxima;
-=======
         barraBateria.fillAmount = (float)bateriaActual / bateriaMaxima;
 
         // Verificar si ha pasado medio minuto para disminuir la batería
@@ -73,7 +78,7 @@ public class userController : MonoBehaviour
             tiempoTranscurrido = 0f; // Reiniciar el tiempo transcurrido
         }
 
-        
+
         // Aumentar el hambre y la sed cada minuto
         tiempoTranscurridoDesdeUltimaActualizacion += Time.deltaTime; // Sumar el tiempo transcurrido en cada fotograma
         if (tiempoTranscurridoDesdeUltimaActualizacion >= tiempoDeActualizacion)
@@ -105,7 +110,6 @@ public class userController : MonoBehaviour
             // Reiniciar el temporizador
             tiempoTranscurridoDesdeUltimaActualizacion = 0f;
         }
->>>>>>> Stashed changes
 
         // Verificar si se ha presionado la tecla para activar/desactivar el panel Mochila
         if (Input.GetKeyDown(mochila))
@@ -143,26 +147,31 @@ public class userController : MonoBehaviour
             }
         }
 
-<<<<<<< Updated upstream
-        if (tensionActual <= 0)//El usuario pierde
-=======
-        // Debug para verificar el estado de los paneles
-        Debug.Log("Backpack Panel Activo: " + isBackpackPanelActive);
-        Debug.Log("Estados Panel Activo: " + isEstadosPanelActive);
 
-        // Verificar si al menos uno de los paneles está activo y aumentar o reducir la tensión en consecuencia
+
         if (isBackpackPanelActive || isEstadosPanelActive)
         {
-            // Si al menos uno de los paneles está activo, aumentamos la tensión
-            tensionActual += Mathf.RoundToInt(tensionIncrementRate * Time.deltaTime);
+            tiempoTranscurridoDesdeUltimaActualizacion += Time.deltaTime;
+            while (tiempoTranscurridoDesdeUltimaActualizacion >= 1f) // Se incrementa un punto por cada segundo
+            {
+                tensionActual += 1;
+                tiempoTranscurridoDesdeUltimaActualizacion -= 1f;
+            }
         }
         else
         {
-            // Si ambos paneles están desactivados, reducimos la tensión a la mitad del incremento
             tensionActual -= Mathf.RoundToInt(tensionIncrementRate * Time.deltaTime * 0.5f);
+
+            // Restar 10 puntos si ambos paneles están desactivados
+            if (tensionActual <= tensionMaxima && tensionActual >= 10)
+            {
+                tensionActual -= 10;
+            }
+            else if (tensionActual < 10)
+            {
+                tensionActual = 0; // Asegurar que la tensión no sea negativa
+            }
         }
-
-
 
         // Debug para verificar la tensión después de ajustarla
         Debug.Log("Tensión Actual después de ajuste: " + tensionActual);
@@ -172,7 +181,6 @@ public class userController : MonoBehaviour
 
 
         if (tensionActual == 100)//El usuario pierde
->>>>>>> Stashed changes
         {
             backpackPanel.SetActive(false);
             estadosPanel.SetActive(false);
@@ -191,8 +199,6 @@ public class userController : MonoBehaviour
         // Actualizar la barra de tensión
         barraTension.fillAmount = (float)tensionActual / tensionMaxima;
     }
-<<<<<<< Updated upstream
-=======
 
     // Función para disminuir la batería
     void DisminuirBateria()
@@ -234,5 +240,6 @@ public class userController : MonoBehaviour
     {
         isEstadosPanelActive = false;
     }
->>>>>>> Stashed changes
 }
+
+

@@ -66,22 +66,17 @@ public class BackPackInventory : MonoBehaviour
 
         if (ID == 1 && cantBaterias != 0)//Bateria
         {
-            if(statesController.bateriaActual > 0)
+            if (statesController.bateriaActual > 0)
             {
                 Debug.Log("Debes agotar tus baterías al 100 para poder recargarlas ");
             }
-            if(statesController.bateriaActual == 0)
+            if (statesController.bateriaActual == 0)
             {
-<<<<<<< Updated upstream
-                statesController.bateriaActual += 100;
-                cantBaterias--;
-=======
                 statesController.bateriaActual += 100; // Se recarga la linterna
                 statesController.tensionActual -= 30; // El miedo baja 50 pts
                 cantBaterias--; // Se quita del inventario
->>>>>>> Stashed changes
             }
-            
+
         }
         if (ID == 2 && cantAgua != 0)//Agua
         {

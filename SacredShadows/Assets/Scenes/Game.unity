@@ -6342,7 +6342,7 @@ GameObject:
   - component: {fileID: 1567256955}
   - component: {fileID: 1567256957}
   m_Layer: 0
-  m_Name: Player
+  m_Name: States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
