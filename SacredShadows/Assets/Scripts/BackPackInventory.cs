@@ -15,7 +15,7 @@ public class BackPackInventory : MonoBehaviour
 
     public int ID;
     public int cantSandwiches = 3;
-    public int cantBaterias = 1;
+    public int cantBaterias = 0;
     public int cantAgua = 1;
     public int cantHojaCoca = 5;
     public int cantCerillos = 2;
@@ -56,67 +56,68 @@ public class BackPackInventory : MonoBehaviour
         selector.transform.position = BackPack[ID].transform.position;
     }
 
-    void inventory()
+    void inventory()//El usuario selecciona del inventario y usa el objeto
     {
-        if (ID == 0 && cantSandwiches > 0)//Comida
+        if (ID == 0 && cantSandwiches != 0)//Comida
         {
-            if (statesController.hambreActual >= 30) // Verificar si hay suficiente hambre para restar
-            {
-                statesController.hambreActual -= 30;
-                if (statesController.hambreActual < 80) // Comprobar si hambreActual es menor que 80
-                {
-                    statesController.tensionActual -= 15; // Disminuir tensionActual si hambreActual es menor que 80
-                }
-            }
-            else
-            {
-                statesController.hambreActual = 0; // Establecer hambreActual a 0 si no hay suficiente hambre
-            }
-            statesController.ActualizarBarraHambre(); // Asegurarse de que la barra de hambre se actualice
-            Debug.Log(statesController.hambreActual);
+            statesController.hambreActual -= 30;
             cantSandwiches--;
+            statesController.ActualizarBarraHambre(); // Actualizar la barra de hambre
         }
-        else if (ID == 1 && cantBaterias > 0) // Bateria
+
+        else if (ID == 1 && cantBaterias != 0)//Bateria
         {
             if (statesController.bateriaActual > 0)
             {
                 Debug.Log("Debes agotar tus baterías al 100 para poder recargarlas ");
             }
-            else if (statesController.bateriaActual == 0)
+            if (statesController.bateriaActual == 0)
             {
                 statesController.bateriaActual += 100; // Se recarga la linterna
-                statesController.tensionActual -= 50; // El miedo baja 50 pts
+                statesController.tensionActual -= 30; // El miedo baja 50 pts
                 cantBaterias--; // Se quita del inventario
             }
         }
-        else if (ID == 2 && cantAgua > 0)//Agua
+
+        else if (ID == 2 && cantAgua != 0)//Agua
         {
-            statesController.sedActual -= 20;
-            statesController.ActualizarBarraSed(); // Llama a la función para actualizar la barra de sed
-            if (statesController.sedActual < 80) // Comprobar si sedActual es menor que 80
-            {
-                statesController.tensionActual -= 15; // Disminuir tensionActual si sedActual es menor que 80
-            }
+            statesController.hambreActual -= 20;
             cantAgua--;
+            statesController.ActualizarBarraHambre(); // Actualizar la barra de hambre
+            statesController.ActualizarBarraSed(); // Actualizar la barra de sed
         }
-        else if (ID == 3 && cantHojaCoca > 0) // Hoja coca
+
+        else if (ID == 3 && cantHojaCoca != 0)//Hoja coca
         {
             statesController.alturaActual -= 20;
             cantHojaCoca--;
         }
-        else if (ID == 4 && cantCerillos > 0) // Cerillos
+
+        else if (ID == 4 && cantCerillos != 0)//Cerillos
         {
             cantCerillos--;
         }
-        else if (ID == 5 && cantBengalas > 0) // Bengala
+
+        else if (ID == 5 && cantBengalas != 0)//Bengala
         {
             cantBengalas--;
         }
+
         else
         {
             Debug.Log("No hay suficientes recursos");
         }
+
+        // Asegurarse de que las barras se actualicen después de modificar los valores de hambre y sed
+        statesController.ActualizarBarraHambre();
+        statesController.ActualizarBarraSed();
+
+        // Debug después de cualquier modificación de tensionActual
+        Debug.Log("Valor de tensionActual después de modificaciones (BackPackInventory): " + statesController.tensionActual);
     }
+
+
+
 
     void OnTriggerEnter(Collider other)//Cada que el usuario choque con un objeto se agrega al inventario y desaparece del mapa
     {
