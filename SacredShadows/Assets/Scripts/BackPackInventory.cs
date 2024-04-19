@@ -14,9 +14,9 @@ public class BackPackInventory : MonoBehaviour
     public userController statesController;
 
     public int ID;
-    public int cantSandwiches = 0;
+    public int cantSandwiches = 3;
     public int cantBaterias = 0;
-    public int cantAgua = 0;
+    public int cantAgua = 1;
     public int cantHojaCoca = 5;
     public int cantCerillos = 2;
     public int cantBengalas = 1;
@@ -62,9 +62,10 @@ public class BackPackInventory : MonoBehaviour
         {
             statesController.hambreActual -= 30;
             cantSandwiches--;
+            statesController.ActualizarBarraHambre(); // Actualizar la barra de hambre
         }
 
-        if (ID == 1 && cantBaterias != 0)//Bateria
+        else if (ID == 1 && cantBaterias != 0)//Bateria
         {
             if (statesController.bateriaActual > 0)
             {
@@ -76,24 +77,28 @@ public class BackPackInventory : MonoBehaviour
                 statesController.tensionActual -= 30; // El miedo baja 50 pts
                 cantBaterias--; // Se quita del inventario
             }
-
         }
-        if (ID == 2 && cantAgua != 0)//Agua
+
+        else if (ID == 2 && cantAgua != 0)//Agua
         {
             statesController.hambreActual -= 20;
             cantAgua--;
-
+            statesController.ActualizarBarraHambre(); // Actualizar la barra de hambre
+            statesController.ActualizarBarraSed(); // Actualizar la barra de sed
         }
-        if (ID == 3 && cantHojaCoca != 0)//Hoja coca
+
+        else if (ID == 3 && cantHojaCoca != 0)//Hoja coca
         {
             statesController.alturaActual -= 20;
             cantHojaCoca--;
         }
-        if (ID == 4 && cantCerillos != 0)//Cerillos
+
+        else if (ID == 4 && cantCerillos != 0)//Cerillos
         {
             cantCerillos--;
         }
-        if (ID == 5 && cantBengalas != 0)//Bengala
+
+        else if (ID == 5 && cantBengalas != 0)//Bengala
         {
             cantBengalas--;
         }
@@ -102,11 +107,17 @@ public class BackPackInventory : MonoBehaviour
         {
             Debug.Log("No hay suficientes recursos");
         }
+
+        // Asegurarse de que las barras se actualicen después de modificar los valores de hambre y sed
+        statesController.ActualizarBarraHambre();
+        statesController.ActualizarBarraSed();
+
         // Debug después de cualquier modificación de tensionActual
         Debug.Log("Valor de tensionActual después de modificaciones (BackPackInventory): " + statesController.tensionActual);
-
-
     }
+
+
+
 
     void OnTriggerEnter(Collider other)//Cada que el usuario choque con un objeto se agrega al inventario y desaparece del mapa
     {

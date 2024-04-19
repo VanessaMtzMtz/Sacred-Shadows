@@ -35,12 +35,15 @@ public class userController : MonoBehaviour
 
     private bool isBackpackPanelActive = false;
     private bool isEstadosPanelActive = false;
+    private bool panelesActivadosAlMenosUnaVez = false;
+    private bool sonidoReproducido = false; // Controla si el sonido ya se ha reproducido
+
 
     public TextMeshProUGUI warningTxt;
 
-    private float tensionIncrementRate = 3f; // Ajusta la velocidad de aumento de la tensión
+    private float tensionIncrementRate = 1f; // Ajusta la velocidad de aumento de la tensión
     private float tiempoTranscurridoDesdeUltimaActualizacion = 0f;
-    private float tiempoDeActualizacion = 20f; // Intervalo de tiempo para aumentar el hambre y la sed (en segundos)
+    private float tiempoDeActualizacion = 5f; // Intervalo de tiempo para aumentar el hambre y la sed (en segundos)
     private float tiempoTranscurrido = 0f; // Tiempo transcurrido desde la última disminución de la batería
     private float intervaloBateria = 2f; // Intervalo de tiempo para disminuir la batería (en segundos)
 
@@ -48,7 +51,24 @@ public class userController : MonoBehaviour
     void Start()
     {
         hudController = FindObjectOfType<HUDController>();
+        InvokeRepeating("AumentarHambreYSed", tiempoDeActualizacion, tiempoDeActualizacion);
         ActualizarBarraSed(); // Llama a la función para actualizar la barra de sed al inicio
+
+    }
+    // Método para aumentar el hambre y la sed
+    void AumentarHambreYSed()
+    {
+        // Aumentar el hambre y la sed en 5 unidades
+        hambreActual += 5;
+        sedActual += 5;
+
+        // Asegurarse de que el valor no exceda el máximo
+        hambreActual = Mathf.Min(hambreActual, hambreMaxima);
+        sedActual = Mathf.Min(sedActual, sedMaxima);
+
+        // Actualizar las barras de hambre y sed en el HUD
+        ActualizarBarraHambre();
+        ActualizarBarraSed();
     }
 
     public void ActualizarBarraHambre()
@@ -80,15 +100,18 @@ public class userController : MonoBehaviour
 
 
         // Aumentar el hambre y la sed cada minuto
-        tiempoTranscurridoDesdeUltimaActualizacion += Time.deltaTime; // Sumar el tiempo transcurrido en cada fotograma
+        tiempoTranscurridoDesdeUltimaActualizacion += Time.deltaTime;
         if (tiempoTranscurridoDesdeUltimaActualizacion >= tiempoDeActualizacion)
         {
+            // Aumentar el hambre y la sed en 5 unidades
             hambreActual += 5;
             sedActual += 5;
 
             // Asegurarse de que el valor no exceda el máximo
             hambreActual = Mathf.Min(hambreActual, hambreMaxima);
             sedActual = Mathf.Min(sedActual, sedMaxima);
+
+            // Actualizar las barras de hambre y sed en el HUD
             ActualizarBarraHambre();
             ActualizarBarraSed();
 
@@ -147,34 +170,25 @@ public class userController : MonoBehaviour
             }
         }
 
-
-
+        // Verificar si al menos uno de los paneles está activo y aumentar o reducir la tensión en consecuencia
         if (isBackpackPanelActive || isEstadosPanelActive)
         {
+            // Si al menos uno de los paneles está activo, aumentamos la tensión
             tiempoTranscurridoDesdeUltimaActualizacion += Time.deltaTime;
             while (tiempoTranscurridoDesdeUltimaActualizacion >= 1f) // Se incrementa un punto por cada segundo
             {
                 tensionActual += 1;
                 tiempoTranscurridoDesdeUltimaActualizacion -= 1f;
             }
+
+            panelesActivadosAlMenosUnaVez = true;
         }
-        else
+        else if (panelesActivadosAlMenosUnaVez) // Si los paneles se han activado al menos una vez
         {
+            // Si ambos paneles están desactivados, reducimos la tensión a la mitad del incremento
             tensionActual -= Mathf.RoundToInt(tensionIncrementRate * Time.deltaTime * 0.5f);
-
-            // Restar 10 puntos si ambos paneles están desactivados
-            if (tensionActual <= tensionMaxima && tensionActual >= 10)
-            {
-                tensionActual -= 10;
-            }
-            else if (tensionActual < 10)
-            {
-                tensionActual = 0; // Asegurar que la tensión no sea negativa
-            }
         }
 
-        // Debug para verificar la tensión después de ajustarla
-        Debug.Log("Tensión Actual después de ajuste: " + tensionActual);
 
         // Asegurarse de que la barra de tensión esté dentro del rango
         tensionActual = Mathf.Clamp(tensionActual, 0, tensionMaxima);
@@ -187,14 +201,17 @@ public class userController : MonoBehaviour
             hudController.gameOverPanel.SetActive(true);
         }
 
-        if (tensionActual >= 70)//Activamos sonido
+        // Reproducir sonido de miedo si la tensión es alta
+        if (tensionActual >= 70 && !sonidoReproducido)
         {
             SFXManager.Instance.PlayFear();
+            sonidoReproducido = true; // Marcar que el sonido se ha reproducido
         }
-
-        // Debug para verificar si tensionActual cambia después de los cálculos
-        Debug.Log("Valor de tensionActual después de cálculos (userController): " + tensionActual);
-
+        else if (tensionActual < 70 && sonidoReproducido) // Apagar el sonido si la tensión baja
+        {
+            SFXManager.Instance.StopFear();
+            sonidoReproducido = false; // Marcar que el sonido ya no se está reproduciendo
+        }
 
         // Actualizar la barra de tensión
         barraTension.fillAmount = (float)tensionActual / tensionMaxima;
@@ -206,7 +223,6 @@ public class userController : MonoBehaviour
         if (bateriaActual > 0) // Asegurarse de que la batería no esté vacía
         {
             bateriaActual--; // Disminuir la batería en un punto
-            Debug.Log(bateriaActual);
         }
 
         if (bateriaActual == 0)//Si la bateria se agota el miedo crece
@@ -214,7 +230,7 @@ public class userController : MonoBehaviour
             tensionActual += 35;
         }
 
-        if (bateriaActual <= 20)//Si la bateria se agota el miedo crece
+        if (bateriaActual <= 20)//Advertencia para buscar fogata
         {
             warningTxt.text = "¡TUS BATERIAS SE AGOTAN! Busca una fogata urgentemente";
         }
@@ -241,5 +257,4 @@ public class userController : MonoBehaviour
         isEstadosPanelActive = false;
     }
 }
-
 

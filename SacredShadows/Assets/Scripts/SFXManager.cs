@@ -28,4 +28,10 @@ public class SFXManager : MonoBehaviour
         sfxAudioSource.PlayOneShot(sFXClips[2]);
     }
 
+    public void StopFear()
+    {
+        sfxAudioSource.Stop();
+    }
+
+
 }
