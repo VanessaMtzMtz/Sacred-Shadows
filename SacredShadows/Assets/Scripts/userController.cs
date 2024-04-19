@@ -145,10 +145,12 @@ public class userController : MonoBehaviour
             if (backpackPanel.activeSelf)
             {
                 ActivateBackpackPanel();
+                //Apaga la linterna
             }
             else
             {
                 DeactivateBackpackPanel();
+                //Enciende la linterna
             }
         }
 
@@ -163,10 +165,12 @@ public class userController : MonoBehaviour
             if (estadosPanel.activeSelf)
             {
                 ActivateEstadosPanel();
+                //Apaga la linterna
             }
             else
             {
                 DeactivateEstadosPanel();
+                //Enciende la linterna
             }
         }
 
