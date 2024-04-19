@@ -38,6 +38,7 @@ public class userController : MonoBehaviour
     private bool panelesActivadosAlMenosUnaVez = false;
     private bool sonidoReproducido = false; // Controla si el sonido ya se ha reproducido
 
+    public Light linterna;
 
     public TextMeshProUGUI warningTxt;
 
@@ -145,12 +146,12 @@ public class userController : MonoBehaviour
             if (backpackPanel.activeSelf)
             {
                 ActivateBackpackPanel();
-                //Apaga la linterna
+                linterna.gameObject.SetActive(false);
             }
             else
             {
                 DeactivateBackpackPanel();
-                //Enciende la linterna
+                linterna.gameObject.SetActive(true);
             }
         }
 
@@ -165,12 +166,12 @@ public class userController : MonoBehaviour
             if (estadosPanel.activeSelf)
             {
                 ActivateEstadosPanel();
-                //Apaga la linterna
+                linterna.gameObject.SetActive(false);
             }
             else
             {
                 DeactivateEstadosPanel();
-                //Enciende la linterna
+                linterna.gameObject.SetActive(true);
             }
         }
 

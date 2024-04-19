@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 96db7ed979771814f94f2bd81322ec77
+guid: 30c5260615e28b1458b51b54524ab7d0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: breadTexture
+    second: {fileID: 2100000, guid: 76b82c096295990429a0ff9d226cd43a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

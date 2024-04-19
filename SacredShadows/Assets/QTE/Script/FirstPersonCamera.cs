@@ -6,13 +6,8 @@ public class FirstPersonCamera : MonoBehaviour
 {
     public float movementSpeed = 5.0f;
     public float rotationSpeed = 2.0f;
-    private Animator animator;
+    public Animator animator;
     private bool caminando = false;
-
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     void Update()
     {
@@ -43,6 +38,6 @@ public class FirstPersonCamera : MonoBehaviour
         }
 
         // Actualizar el estado de la animación en el Animator Controller
-        animator.SetBool("Caminando", caminando);
+        animator.SetBool("caminando", caminando);
     }
 }
